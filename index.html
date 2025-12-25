@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>国際的な物価変動と経済指標の分析 | 2025年度版</title>
+    <style>
+        /* === 基本設定：学校のサイトっぽく地味に === */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            overflow: hidden; 
+        }
+
+        /* === 偽装用（勉強）モード === */
+        #study-mode {
+            display: block; 
+            width: 100%;
+            height: 100vh;
+            overflow-y: scroll;
+            background-color: white;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        header {
+            border-bottom: 2px solid #0056b3;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        h1 { font-size: 24px; color: #0056b3; }
+        h2 { font-size: 18px; border-left: 5px solid #0056b3; padding-left: 10px; margin-top: 30px; }
+        p { line-height: 1.8; font-size: 14px; }
+        
+        .ref-link {
+            color: #0056b3;
+            text-decoration: underline;
+            cursor: pointer;
+            margin: 12px 0; /* 少し間隔を広げた */
+            display: block;
+            font-weight: bold;
+            font-size: 15px;
+        }
+        .ref-link:hover { color: #d9534f; }
+
+        /* === ゲームモード（裏画面） === */
+        #game-mode {
+            display: none; 
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            z-index: 100;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* === 緊急避難ボタン（右下） === */
+        #panic-btn {
+            position: fixed;
+            bottom: 0px;
+            right: 0px;
+            width: 50px;
+            height: 50px;
+            /* ほぼ透明 */
+            background-color: rgba(255, 255, 255, 0.01); 
+            border: none;
+            cursor: default; 
+            z-index: 9999; 
+        }
+        
+        #panic-btn:active {
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- ================= 勉強画面 ================= -->
+    <div id="study-mode">
+        <header>
+            <h1>国際的な物価変動と経済指標の分析</h1>
+            <p style="font-size: 12px; color: #666;">最終更新日: 2025年1月20日 | カテゴリ: 社会科資料集</p>
+        </header>
+
+        <article>
+            <p>2020年代に入り、世界経済はかつてないスピードで変化している。特にデジタル通貨の普及と実体経済の乖離（かいり）は、中学生の社会科教育においても重要なテーマとなりつつある。</p>
+            
+            <h2>1. インフレーションのメカニズム</h2>
+            <p>需要と供給のバランスが崩れた時、価格変動が発生する。以下のシミュレーションモデル（資料）は、確率論に基づいた資産の増減を表したものである。</p>
+            
+            <h2>2. 統計データモデル（閲覧用）</h2>
+            <p>※以下のリンクをクリックすると、ブラウザ上で動作する経済シミュレーション（JSモデル）が展開されます。</p>
+            
+            <!-- ★★★ここを3つに増やしたぞ★★★ -->
+            <div style="background-color: #f9f9f9; padding: 15px; border: 1px solid #ddd; border-radius: 5px;">
+                
+                <!-- ゲーム1: game1.html -->
+                <span class="ref-link" onclick="startGame('game1.html')">
+                    資料A：通貨流通量の"火山"化
+                </span>
+
+                <!-- ゲーム2: game2.html -->
+                <span class="ref-link" onclick="startGame('game2.html')">
+                    資料B："寿司"などの和食の外国普及
+                </span>
+
+                <!-- ゲーム3: game3.html -->
+                <span class="ref-link" onclick="startGame('game3.html')">
+                    資料C：円安による安定は"スロット"のようになっている
+                </span>
+
+            </div>
+
+            <h2>3. まとめ</h2>
+            <p>これらのデータから読み取れるように、市場の動きは予測不可能な要素を含んでいる。我々は常に多角的な視点を持つ必要がある。</p>
+            <p>これらの資料は独自のものです。実際とは異なる場合があることをご了承ください。</p>
+        </article>
+    </div>
+
+    <!-- ================= ゲーム画面 ================= -->
+    <div id="game-mode">
+        <!-- srcは空にしておく -->
+        <iframe id="game-frame" src=""></iframe>
+    </div>
+
+    <!-- 緊急避難ボタン -->
+    <button id="panic-btn" onclick="panic()" title="ページトップへ戻る"></button>
+
+    <script>
+        // === ゲーム開始処理 ===
+        function startGame(fileName) {
+            const frame = document.getElementById('game-frame');
+            const studyMode = document.getElementById('study-mode');
+            const gameMode = document.getElementById('game-mode');
+
+            // ファイル名をセット
+            frame.src = fileName;
+
+            // 画面切り替え
+            studyMode.style.display = 'none';
+            gameMode.style.display = 'block';
+            
+            // フォーカス
+            frame.focus();
+        }
+
+        // === 緊急避難システム ===
+        function panic() {
+            const frame = document.getElementById('game-frame');
+            const studyMode = document.getElementById('study-mode');
+            const gameMode = document.getElementById('game-mode');
+
+            // 画面を戻す
+            gameMode.style.display = 'none';
+            studyMode.style.display = 'block';
+
+            // ゲームを強制終了（音も消える）
+            frame.src = "";
+        }
+    </script>
+</body>
+</html>
